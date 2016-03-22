@@ -104,7 +104,7 @@ void setup() {
 #endif //ECHO_TO_SERIAL
  
   // If you want to set the aref to something other than 5v
-  analogReference(EXTERNAL);
+//  analogReference(EXTERNAL);
 }
 
 void readAnalogs(bool outputIt){
@@ -113,7 +113,7 @@ void readAnalogs(bool outputIt){
   // so do it one at a time
   for (int i=0;i<6;i++){
     raw[i]=analogRead(analogPins[i]);
-    delay(10);
+    //delay(10);
     if(raw[i]) {
       buffer[i]= raw[i] * Vin;
       Vout[i]= (buffer[i])/1024.0;
@@ -122,12 +122,28 @@ void readAnalogs(bool outputIt){
       if (outputIt){
         //Serial.print(" Vout[");Serial.print(i);Serial.print("] = ");
         //Serial.print(Vout[i]);
+
+
+        // BMW Black Air Sensor
+        if (i==0){
+          R2[i]=-.00864*R2[i]+123.5043;
+        }
+        // BMW Yellow Air Sensor
+        else if (i==4){
+          R2[i]=-.11244*R2[i]+241.3669;
+        }        
+        // BMW Water Sensor
+        else if (i==5){
+          R2[i]=-.09459*R2[i]+183.8406;
+        }
+
         Serial.print(" R2[");Serial.print(i);Serial.print("] = ");
         Serial.print(R2[i]);
         logfile.print(Vout[i]);
         logfile.print(",");
         logfile.print(R2[i]);
-      }
+        }
+      
     }
     if (outputIt){
       logfile.print(",");
@@ -193,7 +209,6 @@ void loop() {
   
     // delay for the amount of time we want between readings
   delay((LOG_INTERVAL -1) - (millis() % LOG_INTERVAL));
-  
   outputDate();
   readAnalogs(true);
 
