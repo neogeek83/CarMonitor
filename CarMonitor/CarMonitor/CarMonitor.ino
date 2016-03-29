@@ -15,7 +15,7 @@ uint32_t syncTime = 0; // time of last sync()
 #define ECHO_TO_SERIAL   1 // echo data to serial port
 #define WAIT_TO_START    0 // Wait for serial input in setup()
 
-String LOGFILE_HEADER = "millis,stamp,datetime,light,temp,vcc";
+String LOGFILE_HEADER = "millis,stamp,datetime,blackair,yellowair,watertemp,12v";
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
@@ -44,7 +44,7 @@ int analogPins[6]= {0,1,2,3,4,5};
 int raw[6]= {0};
 int Vin= 5;
 float Vout[6]= {0};
-float R1[6]= {10000,10000,10000,10000,10000,10000};
+float R1[6]= {10000,10300,10100,32700,10020,10000};
 float R2[6]= {0};
 float buffer[6]= {0};
 
@@ -113,7 +113,7 @@ void readAnalogs(bool outputIt){
   // so do it one at a time
   for (int i=0;i<6;i++){
     raw[i]=analogRead(analogPins[i]);
-    //delay(10);
+    delay(10);
     if(raw[i]) {
       buffer[i]= raw[i] * Vin;
       Vout[i]= (buffer[i])/1024.0;
@@ -128,6 +128,10 @@ void readAnalogs(bool outputIt){
         if (i==0){
           R2[i]=-.00864*R2[i]+123.5043;
         }
+        // Volt Meter
+        else if (i==3){
+          R2[i]=raw[i]/59.046f;
+        }
         // BMW Yellow Air Sensor
         else if (i==4){
           R2[i]=-.11244*R2[i]+241.3669;
@@ -136,6 +140,7 @@ void readAnalogs(bool outputIt){
         else if (i==5){
           R2[i]=-.09459*R2[i]+183.8406;
         }
+        
 
         Serial.print(" R2[");Serial.print(i);Serial.print("] = ");
         Serial.print(R2[i]);
