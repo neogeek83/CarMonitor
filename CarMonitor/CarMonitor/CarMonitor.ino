@@ -36,6 +36,8 @@ void error(char *str)
 
 
 // -- hall sensor
+
+ //DIGITAL PIN 2 for the hall sensor input. 
  volatile byte half_revolutions;
  unsigned int rpm;
  unsigned long timeold;
