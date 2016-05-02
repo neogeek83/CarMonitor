@@ -15,7 +15,7 @@ uint32_t syncTime = 0; // time of last sync()
 #define ECHO_TO_SERIAL   1 // echo data to serial port
 #define WAIT_TO_START    0 // Wait for serial input in setup()
 
-String LOGFILE_HEADER = "millis,stamp,datetime,blackair,yellowair,watertemp,12v";
+String LOGFILE_HEADER = "millis,stamp,datetime,blackair,yellowair,watertemp,12v,rpm";
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
@@ -35,7 +35,12 @@ void error(char *str)
 }
 
 
+// -- hall sensor
+ volatile byte half_revolutions;
+ unsigned int rpm;
+ unsigned long timeold;
 
+ // -- end hall sensor
 
 
 
@@ -51,6 +56,15 @@ float buffer[6]= {0};
 void setup() {
   Serial.begin(9600);
   Serial.println();
+
+// -- hall sensor
+   digitalWrite(2, HIGH);
+   attachInterrupt(0, rpm_fun, RISING);
+
+   half_revolutions = 0;
+   rpm = 0;
+   timeold = 0;
+// -- end hall sensor
   
 #if WAIT_TO_START
   Serial.println("Type any character to start");
@@ -142,7 +156,7 @@ void readAnalogs(bool outputIt){
         }
         
 
-        Serial.print(" R2[");Serial.print(i);Serial.print("] = ");
+        Serial.print(", R2[");Serial.print(i);Serial.print("] = ");
         Serial.print(R2[i]);
         logfile.print(Vout[i]);
         logfile.print(",");
@@ -154,6 +168,13 @@ void readAnalogs(bool outputIt){
       logfile.print(",");
     }
   }
+
+  // -- add hall sensor reading
+  logfile.print(",");
+  logfile.print(rpm);
+  Serial.print(", RPM = ");
+  Serial.print(rpm,DEC);
+  // -- end hall sensor
   if (outputIt) {
     Serial.print("\n");
     logfile.println();
@@ -211,6 +232,21 @@ void outputDate(void)
 }
 
 void loop() {
+
+
+// -- hall sensor
+   if (half_revolutions >= 20) { 
+     //Update RPM every 20 counts, increase this for better RPM resolution,
+     //decrease for faster update
+     rpm = 30*1000/(millis() - timeold)*half_revolutions;
+     timeold = millis();
+     half_revolutions = 0;
+    // Serial.println(rpm,DEC);
+   }
+// -- hall sensor end
+
+
+
   
     // delay for the amount of time we want between readings
   delay((LOG_INTERVAL -1) - (millis() % LOG_INTERVAL));
@@ -226,3 +262,12 @@ void loop() {
   // blink LED to show we are syncing data to the card & updating FAT!
   logfile.flush();
 }
+
+
+// -- hall sensor
+ void rpm_fun()
+ {
+   half_revolutions++;
+   //Each rotation, this interrupt function is run twice
+ }
+// -- hall sensor end
