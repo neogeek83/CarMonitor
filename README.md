@@ -1,6 +1,17 @@
 # CarMonitor
-An Arduino project for logging pre-OBD car vitals (batt voltage, air temp, coolant temp, &amp; map pressure).
+An Arduino project for logging pre-OBD car vitals (batt voltage, air temp, coolant temp, &amp; map pressure). Meant to be used with an Arduino Duemilanove
 
+##Project Sketches
+ * CarMonitor
+   Brings all the below projects together
+   
+##Supporting Sketches
+ * ImpedanceTester
+   Code specific to create an Ohm Meter
+ * SDWriter
+   Project for bringing up the SDCard writer. This expects an SDcard writter /w RTC (set the clock using the below project prior to using this one)
+ * SetSDCardRTCTime
+   Set the time for the SDCard writer uses SDcard read/write shield /w RTC (something like these: http://www.ebay.com/sch/i.html?_from=R40&_trksid=p2055845.m570.l1313.TR0.TRC0.H0.Xsdcard+arduino+rtc.TRS0&_nkw=sdcard+arduino+rtc&_sacat=0)
 
 ###Sensors
 
