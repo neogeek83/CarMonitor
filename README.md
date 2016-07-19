@@ -1,7 +1,7 @@
 # CarMonitor
 An Arduino project for logging pre-OBD car vitals (batt voltage, air temp, coolant temp, &amp; map pressure). Meant to be used with an Arduino Duemilanove
 
-##Dependancies
+##Dependencies
   * Arduino Libraries
     * RTCLib
     * SD (built-in now I think)

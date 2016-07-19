@@ -1,6 +1,6 @@
 #include <SD.h>
 #include <Wire.h>
-#include "RTClib.h"
+#include "RTClib.h" //Requires RTClib be installed (Sketch->Include Lirary->Manage Libraries...->search for RTCLib->install
 
 // how many milliseconds between grabbing data and logging it. 1000 ms is once a second
 #define LOG_INTERVAL  1000 // mills between entries (reduce to take more/faster data)
