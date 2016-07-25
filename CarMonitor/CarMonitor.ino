@@ -13,7 +13,7 @@
 uint32_t syncTime = 0; // time of last sync()
 
 #define ECHO_TO_SERIAL   1 // echo data to serial port
-#define WAIT_TO_START    0 // Wait for serial input in setup()
+#define WAIT_TO_START    1 // Wait for serial input in setup()
 
 String LOGFILE_HEADER = "millis,stamp,datetime,blackair,yellowair,watertemp,12v,rpm";
 
@@ -86,14 +86,17 @@ void setup() {
   Serial.println("card initialized.");
   
   // create a new file
+  uint8_t MAX_NUM_FILES = 100;
   char filename[] = "LOGGER00.CSV";
-  for (uint8_t i = 0; i < 100; i++) {
-    filename[6] = i/10 + '0';
-    filename[7] = i%10 + '0';
+  for (uint8_t i = 0; i < MAX_NUM_FILES; i++) {
+    filename[6] = i/100 + '0';
+    filename[7] = i%100 + '0';
     if (! SD.exists(filename)) {
       // only open a new file if it doesn't exist
       logfile = SD.open(filename, FILE_WRITE); 
       break;  // leave the loop!
+    } else if (i==(MAX_NUM_FILES-1)){
+      error("Max number of files reached, download logs from SDCard or move off SD root.");
     }
   }
   
