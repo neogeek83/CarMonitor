@@ -31,6 +31,11 @@ BMW External black air sensor
 
 
 ###TODO
+ * Wire up breadboard
+ *  green - coolant temperature sensor
+ *  brown - 12V system
+ *  blue - intake temperature
+ *  orange - coil voltage
  * wire in hall effect sensor to car
  * pretty up arduino code
  * take pictures of setup and add to this readme
