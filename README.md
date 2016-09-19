@@ -32,11 +32,6 @@ BMW External black air sensor
 
 ###TODO
  * wire in hall effect sensor to car
- * drill hole and mount water temp sensor
- * wire in ACC voltage sensor
- * wire in Air temp sensor
- * run wire through heat shield
- * wire up molex connector for fast disconnect of Arduino
  * pretty up arduino code
  * take pictures of setup and add to this readme
  * add a MAP sensor to system
