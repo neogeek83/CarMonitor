@@ -29,12 +29,9 @@ BMW External black air sensor
  7355.93 @ 61.5f
  5260 @ 75f
 
-
-###TODO
-  * Troubleshoot wiring harness pins 7/8 - why does connecting freeze app?
-	* Tried swapping with A1, A2, A4, same effect
-  * Recalibrate/troubleshoot AIT (pin 1 and 2) and calibrate water sensor
-  * Wire up breadboard to wiring harness (harness side)
+###WIRING
+  * https://goo.gl/photos/Le24ZwGX4rxnEHM88 
+  * Harness:
     *  1 blue - intake temperature
 	*  2 b /w - intake temp (-)
 	*  3 orange - coil voltage
@@ -43,7 +40,7 @@ BMW External black air sensor
 	*  6 b / w - 12V system (-)
 	*  7 green - coolant temperature sensor
 	*  8 g / w - coolant temperature sensor (-)
-  * Wire up breadboard to wiring harness (breadboard side)
+  * Arduino Pins:
     * A0 - Air Sensor (Black) (10k)
 	* A1 - ~ (10.3k)
 	* A2 - ~ (10.1k)
@@ -51,6 +48,12 @@ BMW External black air sensor
 	* A4 - Air Sensor (Yellow) (10.02k)
 	* A5 - Water Sensor (10k)
 	* D2 - hall effect sensor
+
+###TODO
+  * Troubleshoot wiring harness pins 7/8 - why does connecting freeze app?
+	* Tried swapping with A1, A2, A4, same effect
+  * Recalibrate/troubleshoot AIT (pin 1 and 2) and calibrate water sensor
+  * Wire up breadboard to wiring harness
   * wire in hall effect sensor to car
   * pretty up arduino code
   * take pictures of setup and add to this readme
