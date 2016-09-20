@@ -31,13 +31,28 @@ BMW External black air sensor
 
 
 ###TODO
- * Wire up breadboard
- *  green - coolant temperature sensor
- *  brown - 12V system
- *  blue - intake temperature
- *  orange - coil voltage
- * wire in hall effect sensor to car
- * pretty up arduino code
- * take pictures of setup and add to this readme
- * add a MAP sensor to system
- * add secondary voltage sensor as alternate to hall sensor(connected to (-) coil and ACC) 
+  * Troubleshoot wiring harness pins 7/8 - why does connecting freeze app?
+	* Tried swapping with A1, A2, A4, same effect
+  * Recalibrate/troubleshoot AIT (pin 1 and 2) and calibrate water sensor
+  * Wire up breadboard to wiring harness (harness side)
+    *  1 blue - intake temperature
+	*  2 b /w - intake temp (-)
+	*  3 orange - coil voltage
+	*  4 o /w   - coil voltage (-)
+	*  5 brown - 12V system
+	*  6 b / w - 12V system (-)
+	*  7 green - coolant temperature sensor
+	*  8 g / w - coolant temperature sensor (-)
+  * Wire up breadboard to wiring harness (breadboard side)
+    * A0 - Air Sensor (Black) (10k)
+	* A1 - ~ (10.3k)
+	* A2 - ~ (10.1k)
+	* A3 - Voltmeter (32.7k)
+	* A4 - Air Sensor (Yellow) (10.02k)
+	* A5 - Water Sensor (10k)
+	* D2 - hall effect sensor
+  * wire in hall effect sensor to car
+  * pretty up arduino code
+  * take pictures of setup and add to this readme
+  * add a MAP sensor to system
+  * add secondary voltage sensor as alternate to hall sensor(connected to (-) coil and ACC) 

@@ -86,11 +86,11 @@ void setup() {
   Serial.println("card initialized.");
   
   // create a new file
-  uint8_t MAX_NUM_FILES = 100;
+  uint8_t MAX_NUM_FILES = 1000;
   char filename[] = "LOGGER00.CSV";
   for (uint8_t i = 0; i < MAX_NUM_FILES; i++) {
-    filename[6] = i/100 + '0';
-    filename[7] = i%100 + '0';
+    filename[6] = i/1000 + '0';
+    filename[7] = i%1000 + '0';
     if (! SD.exists(filename)) {
       // only open a new file if it doesn't exist
       logfile = SD.open(filename, FILE_WRITE); 
