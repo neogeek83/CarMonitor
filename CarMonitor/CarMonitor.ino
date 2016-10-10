@@ -81,14 +81,14 @@ void setup() {
   
   // see if the card is present and can be initialized:
   if (!SD.begin(chipSelect)) {
-    error("Card failed, or not present");
+    error((char*)"Card failed, or not present");
   }
   Serial.println("card initialized.");
   
   // create a new file
-  uint8_t MAX_NUM_FILES = 1000;
+  uint16_t MAX_NUM_FILES = 1000;
   char filename[] = "LOGGER00.CSV";
-  for (uint8_t i = 0; i < MAX_NUM_FILES; i++) {
+  for (uint16_t i = 0; i < MAX_NUM_FILES; i++) {
     filename[6] = i/1000 + '0';
     filename[7] = i%1000 + '0';
     if (! SD.exists(filename)) {
@@ -96,12 +96,12 @@ void setup() {
       logfile = SD.open(filename, FILE_WRITE); 
       break;  // leave the loop!
     } else if (i==(MAX_NUM_FILES-1)){
-      error("Max number of files reached, download logs from SDCard or move off SD root.");
+      error((char*)"Max number of files reached, download logs from SDCard or move off SD root.");
     }
   }
   
   if (! logfile) {
-    error("couldnt create file");
+    error((char*)"couldnt create file");
   }
   
   Serial.print("Logging to: ");
@@ -139,30 +139,39 @@ void readAnalogs(bool outputIt){
       buffer[i]= (Vin/Vout[i]) -1;
       R2[i]= R1[i] * buffer[i];
       if (outputIt){
-        //Serial.print(" Vout[");Serial.print(i);Serial.print("] = ");
-        //Serial.print(Vout[i]);
-
 
         // BMW Black Air Sensor
         if (i==0){
           R2[i]=-.00864*R2[i]+123.5043;
+          Serial.print(", IAT= ");
+          Serial.print(R2[i]);
         }
         // Volt Meter
         else if (i==3){
           R2[i]=raw[i]/59.046f;
+          Serial.print(", battV= ");
+          Serial.print(R2[i]);
         }
         // BMW Yellow Air Sensor
         else if (i==4){
           R2[i]=-.11244*R2[i]+241.3669;
+          Serial.print(", Pin4= ");
+          Serial.print(R2[i]);
         }        
         // BMW Water Sensor
         else if (i==5){
           R2[i]=-.09459*R2[i]+183.8406;
+          Serial.print(", H2O= ");
+          Serial.print(R2[i]);
+        }
+        //catch all
+        else {
+           Serial.print(", R2[");Serial.print(i);Serial.print("] = ");
+           Serial.print(R2[i]);
         }
         
 
-        Serial.print(", R2[");Serial.print(i);Serial.print("] = ");
-        Serial.print(R2[i]);
+       
         logfile.print(Vout[i]);
         logfile.print(",");
         logfile.print(R2[i]);

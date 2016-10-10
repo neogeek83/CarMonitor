@@ -15,16 +15,41 @@ int dummy4 = 0; // it allowed the sketch to load. I had this problem so add thes
 // of my sketches and haven’t had that error pop up again. (Windows XPsp3).
 
 if (! RTC.isrunning()) {
-Serial.println("RTC is NOT running!");
-// following line sets the RTC to the date & time this sketch was compiled
-// uncomment it & upload to set the time, date and start run the RTC!
-RTC.adjust(DateTime(__DATE__, __TIME__));
+  Serial.println("RTC is NOT running!");
+  // following line sets the RTC to the date & time this sketch was compiled
+  // uncomment it & upload to set the time, date and start run the RTC!
+  RTC.adjust(DateTime(__DATE__, __TIME__));
+} else {
+  Serial.print("RTC IS running! Current time is: ");
+  // fetch the time
+  printCurrentTime();
 }
-else {
-Serial.println("RTC IS running!");
-Serial.println(RTC.now().unixtime());
-}
+  Serial.println("Type any character to update time to host's time");
+  while (!Serial.available());
+  RTC.adjust(DateTime(__DATE__, __TIME__));
+  printCurrentTime();
 }
 void loop(void){
 // nothing
 }
+void printCurrentTime(void){
+    DateTime now;
+  now = RTC.now();
+  Serial.print(now.unixtime()); // seconds since 1/1/1970
+  Serial.print(", ");
+  Serial.print('"');
+  Serial.print(now.year(), DEC);
+  Serial.print("/");
+  Serial.print(now.month(), DEC);
+  Serial.print("/");
+  Serial.print(now.day(), DEC);
+  Serial.print(" ");
+  Serial.print(now.hour(), DEC);
+  Serial.print(":");
+  Serial.print(now.minute(), DEC);
+  Serial.print(":");
+  Serial.print(now.second(), DEC);
+  Serial.print('"');
+}
+
+
