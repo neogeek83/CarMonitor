@@ -15,7 +15,7 @@ An Arduino project for logging pre-OBD car vitals (batt voltage, air temp, coola
  * SDWriter - Project for bringing up the SDCard writer. This expects an SDcard writter /w RTC (set the clock using the below project prior to using this one)
  * SetSDCardRTCTime - Set the time for the SDCard writer uses SDcard read/write shield /w RTC (something like these: http://www.ebay.com/sch/i.html?_from=R40&_trksid=p2055845.m570.l1313.TR0.TRC0.H0.Xsdcard+arduino+rtc.TRS0&_nkw=sdcard+arduino+rtc&_sacat=0)
 
-###Sensors
+###Sensors( see also docs/Sensor Readings.xlsx)
 
 Diesel Truck Coolant sensor - FZAF-12A648-A4
  * ~65 degrees => 31 K Ohms
@@ -50,10 +50,9 @@ BMW External black air sensor
 	* D2 - hall effect sensor
 
 ###TODO
-  * Troubleshoot wiring harness pins 7/8 - why does connecting freeze app?
-	* Tried swapping with A1, A2, A4, same effect
+  * Troubleshoot Pin1(blue) not reading. We checked the wiring, seems to be something with the connection to the breadboard or on the arduino itself. Try switching to diff input pin.
+  * Add H20 temp sensor(current one isn't going to work due to 12v power being sent to it)
   * Recalibrate/troubleshoot Intake Air Temp(pin 1 and 2) and calibrate water sensor
-  * Wire up breadboard to wiring harness
   * wire in hall effect sensor to car
   * pretty up arduino code
   * take pictures of setup and add to this readme
