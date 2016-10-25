@@ -17,6 +17,11 @@ An Arduino project for logging pre-OBD car vitals (batt voltage, air temp, coola
 
 ###Sensors( see also docs/Sensor Readings.xlsx)
 
+  * new HAL sensor details: 
+  ** On device 3144 601
+  ** Specs: http://www.elecrow.com/download/A3141-2-3-4-Datasheet.pdf
+  ** PINs: (1 is left when looking at printed letters). Pin 1 = Vcc, 2 = GND, 3=output
+
 Diesel Truck Coolant sensor - FZAF-12A648-A4
  * ~65 degrees => 31 K Ohms
  * finger warming, ~85-90degrees =>28kOhms
@@ -31,7 +36,7 @@ BMW External black air sensor
 
 ###WIRING
   * https://goo.gl/photos/Le24ZwGX4rxnEHM88 
-  * Harness (Pin 1 on breadboard is closest to Arduino):
+  * Harness #1 (Pin 1 on breadboard is closest to Arduino):
     *  1 blue - intake temperature
 	*  2 b /w - intake temp (-)
 	*  3 orange - coil voltage
@@ -40,6 +45,17 @@ BMW External black air sensor
 	*  6 b / w - 12V system (-)
 	*  7 green - coolant temperature sensor
 	*  8 g / w - coolant temperature sensor (-)
+
+  * Harness #2 (Pin 1 on breadboard is FARTHEST to Arduino):
+    *  1 blue - not in use
+	*  2 b /w - not in use
+	*  3 orange - not in use
+	*  4 o /w   - not in use
+	*  5 brown - HALL GND 
+	*  6 b / w - HALL 5Vcc
+	*  7 green - HALL Sensor (pulls to GND when magnet S pole is detected)
+	*  8 g / w - not in use
+	
   * Arduino Pins:
     * A0 - Air Sensor (Black) (10k)
 	* A1 - ~ (10.3k)
@@ -53,9 +69,8 @@ BMW External black air sensor
   * Troubleshoot Pin1(blue) not reading. We checked the wiring, seems to be something with the connection to the breadboard or on the arduino itself. Try switching to diff input pin.
   * Add H20 temp sensor(current one isn't going to work due to 12v power being sent to it)
   ** look up and order T split of H2O hose & replacement hose -- Daniel
-  ** find hall sensors -- Daniel
   * Recalibrate/troubleshoot Intake Air Temp(pin 1 and 2) and calibrate water sensor
-  * wire in hall effect sensor to car
+  * reverse harnest #2 so it matches orientation with #1
   * pretty up arduino code
   * take pictures of setup and add to this readme
   * add a MAP sensor to system
