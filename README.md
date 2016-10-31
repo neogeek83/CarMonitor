@@ -66,7 +66,6 @@ BMW External black air sensor
 	* D2 - hall effect sensor
 
 ###TODO
-  * Troubleshoot Pin1(blue) not reading. We checked the wiring, seems to be something with the connection to the breadboard or on the arduino itself. Try switching to diff input pin.
   * Add H20 temp sensor(current one isn't going to work due to 12v power being sent to it)
   ** look up and order T split of H2O hose & replacement hose -- Daniel
   * Recalibrate/troubleshoot Intake Air Temp(pin 1 and 2) and calibrate water sensor

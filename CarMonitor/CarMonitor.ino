@@ -87,10 +87,11 @@ void setup() {
   
   // create a new file
   uint16_t MAX_NUM_FILES = 1000;
-  char filename[] = "LOGGER00.CSV";
+  char filename[] = "LOGGER000.CSV";
   for (uint16_t i = 0; i < MAX_NUM_FILES; i++) {
     filename[6] = i/1000 + '0';
-    filename[7] = i%1000 + '0';
+    filename[7] = i/100 + '0';
+    filename[8] = i%100 + '0';
     if (! SD.exists(filename)) {
       // only open a new file if it doesn't exist
       logfile = SD.open(filename, FILE_WRITE); 
