@@ -13,7 +13,7 @@
 uint32_t syncTime = 0; // time of last sync()
 
 #define ECHO_TO_SERIAL   1 // echo data to serial port
-#define WAIT_TO_START    1 // Wait for serial input in setup()
+#define WAIT_TO_START    0 // Wait for serial input in setup()
 
 String LOGFILE_HEADER = "millis,stamp,datetime,blackair,yellowair,watertemp,12v,rpm";
 
@@ -87,9 +87,9 @@ void setup() {
   
   // create a new file
   uint16_t MAX_NUM_FILES = 1000;
-  char filename[] = "";
+  char filename[12];
   for (uint16_t i = 0; i < MAX_NUM_FILES; i++) {
-    sprintf(filename, "LOGGER%3d.CSV", i);
+    sprintf(filename, "log-%03d.csv", i);
     if (! SD.exists(filename)) {
       // only open a new file if it doesn't exist
       logfile = SD.open(filename, FILE_WRITE); 
@@ -100,7 +100,8 @@ void setup() {
   }
   
   if (! logfile) {
-    error((char*)"couldnt create file");
+    error((char*)"Couldn't create file:");
+    Serial.println(filename);
   }
   
   Serial.print("Logging to: ");
