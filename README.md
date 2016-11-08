@@ -66,11 +66,12 @@ BMW External black air sensor
 	* D2 - hall effect sensor
 
 ###TODO
-  * Add H20 temp sensor(current one isn't going to work due to 12v power being sent to it)
-  ** look up and order T split of H2O hose & replacement hose -- Daniel
-  * Recalibrate/troubleshoot Intake Air Temp(pin 1 and 2) and calibrate water sensor
-  * reverse harnest #2 so it matches orientation with #1
+
+  * Recalibrate Intake Air Temp(pin 1 and 2) 
   * pretty up arduino code
   * take pictures of setup and add to this readme
-  * add a MAP sensor to system
-  * add secondary voltage sensor as alternate to hall sensor(connected to (-) coil and ACC) 
+  * Create 'event' button to board and in software
+  * Add H20 temp sensor(current one isn't going to work due to 12v power being sent to it)
+  * Calibrate water sensor
+  * Add a MAP sensor to system
+  * Add Coil Voltage Sensor
