@@ -1,6 +1,11 @@
 #include <SD.h>
 #include <Wire.h>
-#include "RTClib.h" //Requires RTClib be installed (Sketch->Include Lirary->Manage Libraries...->search for RTCLib->install
+#include "RTClib.h" //Requires RTClib be installed (Sketch->Include Library->Manage Libraries...->search for RTCLib->install
+
+
+#define ECHO_TO_SERIAL   1 // echo data to serial port
+#define WAIT_TO_START    1 // Wait for serial input in setup()
+#define RAW_OUT          1 // if 1, will output to serial the raw analog pin value readings (only works with ECHO_TO_SERIAL 1)
 
 // how many milliseconds between grabbing data and logging it. 1000 ms is once a second
 #define LOG_INTERVAL  1000 // mills between entries (reduce to take more/faster data)
@@ -12,10 +17,7 @@
 #define SYNC_INTERVAL 1000 // mills between calls to flush() - to write data to the card
 uint32_t syncTime = 0; // time of last sync()
 
-#define ECHO_TO_SERIAL   1 // echo data to serial port
-#define WAIT_TO_START    0 // Wait for serial input in setup()
-
-String LOGFILE_HEADER = "millis,stamp,datetime,blackair,yellowair,watertemp,12v,rpm";
+String LOGFILE_HEADER = "millis,epoch,datetime,blackair,yellowair,watertemp,12v,rpm";
 
 RTC_DS1307 RTC; // define the Real Time Clock object
 
@@ -51,7 +53,7 @@ int analogPins[6]= {0,1,2,3,4,5};
 int raw[6]= {0};
 int Vin= 5;
 float Vout[6]= {0};
-float R1[6]= {10000,10300,10100,32700,10020,10000};
+float R1[6]= {10000,10300,10100,32700,10020,10000}; //in ohms
 float R2[6]= {0};
 float buffer[6]= {0};
 
@@ -170,10 +172,12 @@ void readAnalogs(bool outputIt){
            Serial.print(R2[i]);
         }
         
-
+#if RAW_OUT
+        Serial.print('(');Serial.print(raw[i]);Serial.print(')');
+#endif //RAW_OUT
        
         logfile.print(Vout[i]);
-        logfile.print(",");
+        logfile.print(',');
         logfile.print(R2[i]);
         }
       
@@ -184,7 +188,7 @@ void readAnalogs(bool outputIt){
   }
 
   // -- add hall sensor reading
-  logfile.print(",");
+  logfile.print(',');
   logfile.print(rpm);
   Serial.print(", RPM = ");
   Serial.print(rpm,DEC);
@@ -202,7 +206,7 @@ void outputDate(void)
   // log milliseconds since starting
   uint32_t m = millis();
   logfile.print(m);           // milliseconds since start
-  logfile.print(", ");    
+  logfile.print(',');    
 #if ECHO_TO_SERIAL
   Serial.print(m);         // milliseconds since start
   Serial.print(", ");  
@@ -212,7 +216,7 @@ void outputDate(void)
   now = RTC.now();
   // log time
   logfile.print(now.unixtime()); // seconds since 1/1/1970
-  logfile.print(", ");
+  logfile.print(',');
   logfile.print('"');
   logfile.print(now.year(), DEC);
   logfile.print("/");
@@ -226,7 +230,7 @@ void outputDate(void)
   logfile.print(":");
   logfile.print(now.second(), DEC);
   logfile.print('"');
-  logfile.print(", ");
+  logfile.print(',');
 #if ECHO_TO_SERIAL
   Serial.print(now.unixtime()); // seconds since 1/1/1970
   Serial.print(", ");
@@ -253,7 +257,7 @@ void loop() {
    if (half_revolutions >= 20) { 
      //Update RPM every 20 counts, increase this for better RPM resolution,
      //decrease for faster update
-     rpm = 30*1000/(millis() - timeold)*half_revolutions;
+     rpm = 30*LOG_INTERVAL/(millis() - timeold)*half_revolutions;
      timeold = millis();
      half_revolutions = 0;
     // Serial.println(rpm,DEC);
