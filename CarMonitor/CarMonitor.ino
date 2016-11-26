@@ -226,6 +226,7 @@ void outputDate(void)
   logfile.print(":");
   logfile.print(now.second(), DEC);
   logfile.print('"');
+  logfile.print(", ");
 #if ECHO_TO_SERIAL
   Serial.print(now.unixtime()); // seconds since 1/1/1970
   Serial.print(", ");
