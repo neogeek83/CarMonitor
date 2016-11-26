@@ -8,6 +8,7 @@ An Arduino project for logging pre-OBD car vitals (timestamp, batt voltage, air 
   * Arduino Duemilanove or Uno (others probably work, but have tested these 2)
   * SDCard /w RTC shield
   * Sensors (various supported, most car sensors are resistive, will just need to re-calebrate if different from ones listed below and in docs/)
+
 ### Software
   * Arduino Libraries
     * RTCLib
