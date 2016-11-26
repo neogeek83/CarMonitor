@@ -17,8 +17,8 @@
 #define SYNC_INTERVAL 1000 // mills between calls to flush() - to write data to the card
 uint32_t syncTime = 0; // time of last sync()
 
-String LOGFILE_HEADER = "millis,epoch,datetime,blackair,yellowair,watertemp,12v,rpm";
-
+//Planned LOGFILE_HEADER = "millis,epoch,datetime,blackair,yellowair,watertemp,12v,rpm";
+String LOGFILE_HEADER = "\"Time since engine start(millis)\",\"Unix Epoch Timestamp\",\"Date/Time\",unused,\"AITS (blackair)\",unused,unused,unused,\"Battery Voltage(~12v)\",unused,unused,unused,unused,unused,RPM";
 RTC_DS1307 RTC; // define the Real Time Clock object
 
 

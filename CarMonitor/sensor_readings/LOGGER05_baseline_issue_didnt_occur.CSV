@@ -1,4 +1,4 @@
-millis,stamp,datetime,blackair,yellowair,watertemp,12v,rpm
+"Time since engine start(millis)","Unix Epoch Timestamp","Date/Time",unused,"AITS (blackair)",unused,unused,unused,"Battery Voltage(~12v)",unused,unused,unused,unused,unused,RPM
 1999, 1478549964,"2016/11/7 20:19:24",3.21,75.24,,,3.49,12.09,4.16,12.33,4.16,-8.45,,0
 2999, 1478549965,"2016/11/7 20:19:25",3.21,75.24,,,3.52,12.19,4.16,12.33,4.16,-8.45,,0
 3999, 1478549966,"2016/11/7 20:19:26",3.21,75.24,,,3.52,12.19,4.16,12.33,4.16,-8.45,,0
