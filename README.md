@@ -1,13 +1,18 @@
 # CarMonitor
-An Arduino project for logging pre-OBD car vitals (timestamp, batt voltage, air temp, coolant temp, &amp; HAL sensor for RPM) to an SD card for review later on PC. Can also be used for realtime monitoring. Tested with Arduino Duemilanove and Uno.
+An Arduino project for logging pre-OBD car vitals (timestamp, batt voltage, air temp, coolant temp, &amp; HAL sensor for RPM) to an SD card for review later on PC. Can also be used for real-time monitoring. Tested with Arduino Duemilanove and Uno.
 
 <img src="https://github.com/neogeek83/CarMonitor/blob/master/docs/wiring%20harness/20161107_201841_HDR.jpg?raw=true" />
+
+Sample real output can be found here (read from a '82 Triumph Spitfire): CarMonitor/CarMonitor/sensor_readings/LOGGER05_baseline_issue_didnt_occur.CSV
+
+## Backstory
+As an excuse to learn more about Arduino programming and cars, my brother an I decided to build a logger to help us troubleshoot an intermittent problem with our parent's '82 Spitfire(pre-ODB days). We wanted something that could log every run of the car so we could leave it in there and it'd just go( powered the Arduino from an cigarette lighter->USB charger). Every time the car is turned on, a new log file would be created (stops recording after 999 engine runs). This way we could have data on what was happening after the fact when the issue occurred. This project is the result, and it worked great we were able to figure out the problem and validate the fix (turned out to be an electronic ignition under-voltage issue)!
 
 ##Dependencies
 ### Hardware
   * Arduino Duemilanove or Uno (others probably work, but have tested these 2)
   * SDCard /w RTC shield
-  * Sensors (various supported, most car sensors are resistive, will just need to re-calebrate if different from ones listed below and in docs/)
+  * Sensors (various supported, most car sensors are resistive, will just need to re-calibrate if different from ones listed below and in docs/)
 
 ### Software
   * Arduino Libraries
@@ -82,6 +87,6 @@ An Arduino project for logging pre-OBD car vitals (timestamp, batt voltage, air 
   * pretty up arduino code
   * take pictures of setup and add to this readme
   * Create 'event' button to board and in software
-  * Add H20 temp sensor(current one isn't going to work due to 12v power being sent to it--will fry the arduino input PIN)
+  * Add H20 temp sensor(current one isn't going to work due to 12v power being sent to it--will fry the Arduino input PIN)
   * Add a MAP sensor to system
   * Add Coil Voltage Sensor
