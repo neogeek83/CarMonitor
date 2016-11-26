@@ -1,5 +1,7 @@
 # CarMonitor
-An Arduino project for logging pre-OBD car vitals (batt voltage, air temp, coolant temp, &amp; map pressure). Meant to be used with an Arduino Duemilanove
+An Arduino project for logging pre-OBD car vitals (timestamp, batt voltage, air temp, coolant temp, &amp; HAL sensor for RPM) to an SD card for review later on PC. Can also be used for realtime monitoring. Tested with Arduino Duemilanove and Uno.
+
+<img src="https://github.com/neogeek83/CarMonitor/blob/master/docs/wiring%20harness/20161107_201841_HDR.jpg?raw=true" />
 
 ##Dependencies
   * Arduino Libraries
@@ -46,7 +48,7 @@ BMW External black air sensor
 	*  7 green - coolant temperature sensor
 	*  8 g / w - coolant temperature sensor (-)
 
-  * Harness #2 (Pin 1 on breadboard is FARTHEST to Arduino):
+  * Harness #2 (Pin 1 on breadboard is FARTHEST to Arduino --thk we fixed, need to confirm):
     *  1 blue - not in use
 	*  2 b /w - not in use
 	*  3 orange - not in use
