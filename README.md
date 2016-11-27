@@ -52,7 +52,7 @@ As an excuse to learn more about Arduino programming and cars, my brother an I d
 
 ###WIRING
   * Here's the full diagram for the project:<br>
-  <img src="https://easyeda.com/normal/Arduino_Uno_Sheild-de7a6aff0f0b4fc9a0959b22d81b2400" /> pdf for printing at docs/Arduino_Schematic.pdf
+  <img src="https://easyeda.com/normal/Arduino_Uno_Sheild-de7a6aff0f0b4fc9a0959b22d81b2400" /> pdf for printing at docs/Arduino_Schematic.pdf or edit it online at https://easyeda.com/editor#id=de7a6aff0f0b4fc9a0959b22d81b2400
   * https://goo.gl/photos/Le24ZwGX4rxnEHM88 
   * Harness #1 (Pin 1 on breadboard is closest to Arduino):
     *  1 blue - intake temperature
