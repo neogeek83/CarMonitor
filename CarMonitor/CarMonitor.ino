@@ -154,13 +154,13 @@ void readAnalogs(bool outputIt){
           Serial.print(", battV= ");
           Serial.print(R2[i]);
         }
-        // BMW Yellow Air Sensor
+        // BMW Yellow Air Sensor(not connected on harness)
         else if (i==4){
           R2[i]=-.11244*R2[i]+241.3669;
           Serial.print(", Pin4= ");
           Serial.print(R2[i]);
         }        
-        // BMW Water Sensor
+        // BMW Water Sensor (not connected on harness)
         else if (i==5){
           R2[i]=-.09459*R2[i]+183.8406;
           Serial.print(", H2O= ");

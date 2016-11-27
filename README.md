@@ -6,7 +6,7 @@ An Arduino project for logging pre-OBD car vitals (timestamp, batt voltage, air 
 Sample real output can be found here (read from a '82 Triumph Spitfire): CarMonitor/CarMonitor/sensor_readings/LOGGER05_baseline_issue_didnt_occur.CSV
 
 ## Backstory
-As an excuse to learn more about Arduino programming and cars, my brother an I decided to build a logger to help us troubleshoot an intermittent problem with our parent's '82 Spitfire(pre-ODB days). We wanted something that could log every run of the car so we could leave it in there and it'd just go( powered the Arduino from an cigarette lighter->USB charger). Every time the car is turned on, a new log file would be created (stops recording after 999 engine runs). This way we could have data on what was happening after the fact when the issue occurred. This project is the result, and it worked great we were able to figure out the problem and validate the fix (turned out to be an electronic ignition under-voltage issue)!
+As an excuse to learn more about Arduino programming and cars, my brother an I decided to build a logger to help us troubleshoot an intermittent problem with our parent's '82 Spitfire(pre-ODB days). We wanted something that could log every run of the car so we could leave it in there and it'd just go( powered the Arduino from an cigarette lighter->USB charger). Every time the car is turned on, a new log file would be created (stops recording after 999 engine runs). This way we could have data on what was happening after the fact when the issue occurred. This project is the result, and it worked great we were able to figure out the problem and validate the fix (turned out to be an electronic ignition under-voltage issue)! If anyone else plays with it and finds it useful(or doesn't), open an issue and let me know how it went for you!
 
 ##Dependencies
 ### Hardware
@@ -51,26 +51,28 @@ As an excuse to learn more about Arduino programming and cars, my brother an I d
       * Pin 3 = output (voltage varies)
 
 ###WIRING
+  * Here's the full diagram for the project:<br>
+  <img src="https://easyeda.com/normal/Arduino_Uno_Sheild-de7a6aff0f0b4fc9a0959b22d81b2400" /> pdf for printing at docs/Arduino_Schematic.pdf
   * https://goo.gl/photos/Le24ZwGX4rxnEHM88 
   * Harness #1 (Pin 1 on breadboard is closest to Arduino):
     *  1 blue - intake temperature
     *  2 b /w - intake temp (-)
-    *  3 orange - coil voltage
-    *  4 o /w   - coil voltage (-)
+    *  3 orange - coil voltage (unused)
+    *  4 o /w   - coil voltage (-)(unused)
     *  5 brown - 12V system
     *  6 b / w - 12V system (-)
     *  7 green - coolant temperature sensor
-    *  8 g / w - coolant temperature sensor (-)
+    *  8 g / w - coolant temperature sensor (-) (disconnected on engine side)
 
-  * Harness #2 (Pin 1 on breadboard is FARTHEST to Arduino --thk we fixed, need to confirm):
-    *  1 blue - not in use
-    *  2 b /w - not in use
-    *  3 orange - not in use
-    *  4 o /w   - not in use
+  * Harness #2 (Pin 1 on breadboard is closest to Arduino):
+    *  1 blue - unused
+    *  2 b /w - unused
+    *  3 orange - unused
+    *  4 o /w   - unused
     *  5 brown - HALL GND 
     *  6 b / w - HALL 5Vcc
     *  7 green - HALL Sensor (pulls to GND when magnet S pole is detected)
-    *  8 g / w - not in use
+    *  8 g / w - unused
 	
   * Arduino Pins:
     * A0 - Air Sensor (Black) (10k)
